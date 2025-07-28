@@ -41,9 +41,12 @@
       display: none;
     }
     .question input[type="radio"]:checked + span {
-      background: #007bff;
+      background: transparent;
+    }
+    .question label:has(input[type="radio"]:checked) {
+      background: #3A1C4E;
       color: white;
-      border-color: #007bff;
+      border-color: #3A1C4E;
     }
     .question label span {
       display: block;
