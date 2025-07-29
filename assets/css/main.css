@@ -3230,11 +3230,13 @@ body {
   box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
   position: absolute;
   backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.front {
-  background-image: url(https://source.unsplash.com/random/350x500);
-}
+
 
 .back {
   background-color: #3a3a3a;
