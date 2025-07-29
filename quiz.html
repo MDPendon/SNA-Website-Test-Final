@@ -121,20 +121,18 @@
         <label><input type="radio" name="q7" value="0"><span>Loop length</span></label>
       </div>
 
-      <!-- ## Add type question
       <div class="question">
         <h3>8. If a student isn’t connected to anyone else in the network, what are they called?</h3>
-        <label><input type="radio" name="q3" value="0"><span>Isolated Node</span></label>
-      </div> -->
-
-      <!-- ## Add type question
+        <textarea id="oequestion1" name="oeq1" rows="1" cols="20"></textarea>
+      </div>
+  
       <div class="question">
         <h3>9. What do we call a node or edge that connects two otherwise separate parts of a network?</h3>
-        <label><input type="radio" name="q3" value="0"><span>Bridge</span></label>
-      </div> -->
+        <textarea id="oequestion2" name="oeq2" rows="1" cols="20"></textarea>
+      </div>
 
       <div class="question">
-        <h3>8. Which of the following represents a relationship or connection between two nodes?</h3>
+        <h3>10. Which of the following represents a relationship or connection between two nodes?</h3>
         <label><input type="radio" name="q8" value="0"><span>Path</span></label>
         <label><input type="radio" name="q8" value="0"><span>Attribute</span></label>
         <label><input type="radio" name="q8" value="1"><span>Edge</span></label>
@@ -142,33 +140,30 @@
       </div>
 
       <div class="question">
-        <h3>9. In a network, if Student A sends a message to Student B, but B doesn't respond, this is an example of what kind of edge?</h3>
+        <h3>11. In a network, if Student A sends a message to Student B, but B doesn't respond, this is an example of what kind of edge?</h3>
         <label><input type="radio" name="q9" value="0"><span>Undirected</span></label>
         <label><input type="radio" name="q9" value="0"><span>Bidirectional</span></label>
         <label><input type="radio" name="q9" value="1"><span>Directed</span></label>
         <label><input type="radio" name="q9" value="0"><span>Weighted</span></label>
       </div>
-
-      <!-- ## Add type question
+   
       <div class="question">
         <h3>12. If a node is directly connected to 5 others, what is its degree?</h3>
-        <label><input type="radio" name="q3" value="0"><span>5</span></label>
-      </div> -->
-
-      <!-- ## Add type question
+        <textarea id="oequestion3" name="oeq3" rows="1" cols="20"></textarea>
+      </div>
+     
       <div class="question">
         <h3>13. What is the name for a network that focuses on one person and all their direct connections?</h3>
-        <label><input type="radio" name="q3" value="0"><span>Ego Network</span></label>
-      </div> -->
+        <textarea id="oequestion4" name="oeq4" rows="1" cols="20"></textarea>
+      </div>
 
-      <!-- ## Add type question
       <div class="question">
         <h3>14. A node that has no connections to other nodes is known as a(n) ______.</h3>
-        <label><input type="radio" name="q3" value="0"><span>Isolated Node</span></label>
-      </div> -->
+        <textarea id="oequestion5" name="oeq5" rows="1" cols="20"></textarea>
+      </div>
 
       <div class="question">
-        <h3>10. A bridge in a network is _____.</h3>
+        <h3>15. A bridge in a network is _____.</h3>
         <label><input type="radio" name="q10" value="0"><span>A highly connected node</span></label>
         <label><input type="radio" name="q10" value="1"><span>A connection that links two otherwise separate parts of the network</span></label>
         <label><input type="radio" name="q10" value="0"><span>A node with no edges</span></label>
@@ -184,25 +179,60 @@
     document.getElementById('sna-quiz').addEventListener('submit', function(e) {
       e.preventDefault();
       let score = 0;
-      const total = 10;
+      const total = 15;
       const form = e.target;
-      for (let i = 1; i <= total; i++) {
+      for (let i = 1; i <= 10; i++) {
         const answer = form[`q${i}`].value;
         score += parseInt(answer);
       }
+
+      // Check if open ended questions is correct
+      const oeCorrectAnswers = {
+        oeq1: "isolated node",
+        oeq2: "bridge",
+        oeq3: "5",
+        oeq4: "ego network",
+        oeq5: "isolated node"
+      };
+      for (let i = 1; i <= 5; i++) {
+        const oeAnswer = form[`oeq${i}`].value.trim();
+        if (oeAnswer.toLowerCase() === oeCorrectAnswers[`oeq${i}`]) {
+          score += 1; // Increment score for correct open-ended answers
+        }
+      }
+
       if (isNaN(score)) {
         alert("Please answer all questions.");
         return;
       }
-      document.getElementById('result').innerText = `You got ${score} out of ${total} correct!`;
+      if (score == 15){
+        document.getElementById('result').innerText = "Congratulations! You got a perfect score!";
+        return;
+      }
+      else{
+        document.getElementById('result').innerText = `You got ${score} out of ${total} correct!`;
+      }
       // Grade all the answers and fill in each answer with a green or red for right/wrong answers
-      for (let i = 1; i <= total; i++) {
-        const answer = form[`q${i}`].value;
-        const question = document.querySelector(`.question:nth-child(${i})`);
-        if (answer === "1") {
-          question.querySelector('label:has(input[type="radio"]:checked)').style.backgroundColor = "lightgreen";
+      for (let i = 1; i <= 10; i++) {
+        const radioGroup = form.querySelector(`input[name="q${i}"]:checked`);
+        if (radioGroup) {
+          const label = radioGroup.parentElement;
+          if (radioGroup.value === "1") {
+            label.style.backgroundColor = "lightgreen";
+          } else {
+            label.style.backgroundColor = "lightcoral";
+          }
+        }
+      }
+      
+      // Grade open-ended questions
+      for (let i = 1; i <= 5; i++) {
+        const oeAnswer = form[`oeq${i}`].value.trim();
+        const textarea = form.querySelector(`textarea[name="oeq${i}"]`);
+        if (oeAnswer.toLowerCase() === oeCorrectAnswers[`oeq${i}`]) {
+          textarea.style.backgroundColor = "lightgreen";
         } else {
-          question.querySelector('label:has(input[type="radio"]:checked)').style.backgroundColor = "lightcoral";
+          textarea.style.backgroundColor = "lightcoral";
         }
       }
     });
@@ -228,6 +258,14 @@
                 this.dataset.wasChecked = 'true';
                 
             }
+        });
+    });
+
+    // Add event listeners for textareas to reset colors when clicked
+    document.querySelectorAll('textarea').forEach(textarea => {
+        textarea.addEventListener('focus', function() {
+            // Reset the background color when user clicks into the text box
+            this.style.backgroundColor = "#ffffff";
         });
     });
   </script>
