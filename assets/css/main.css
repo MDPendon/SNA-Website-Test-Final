@@ -3193,6 +3193,16 @@ input, select, textarea {
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: Helvetica, sans-serif;
+  color: rgb(211, 211, 211);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   width: 350px;
   height: 500px;
