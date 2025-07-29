@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SNA Quiz - Social Network Explorer</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(45deg, #061de3, #e306ca);
+  font-family: Helvetica, sans-serif;
+  color: rgb(211, 211, 211);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container-for-all-cards {
+  display: flex;
+  gap: 10px;
+  height: auto;
+  width: auto;
+  padding-top: 20px;
+}
+
+.container {
+  width: 235px;
+  height: 300px;
+  perspective: auto;
+}
+
+.container:hover>.card {
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
+
+.card {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 1500ms;
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+  position: absolute;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.front {
+  background: white;
+  color: black;
+}
+
+.back {
+  background-color: #3a3a3a;
+  transform: rotateY(180deg);
+  gap: 2rem;
+}
+
+.card-front-header {
+  font-size: 1.3rem;
+  width: auto;
+  height: auto;
+  padding: 0 50px 0 50px;
+}
+
+.card-back-text {
+  font-size: 1rem;
+  width: auto;
+  height: auto;
+  padding: 0 50px 0 50px;
+}
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <style>
+      #nav {
+        background-image: url('images/header.jpg');
+        background-size: cover;
+        color: white;
+      }
+      #nav ul li a {
+        color: white;
+      }
+      #nav ul li a:hover {
+        color: #f8f9fa;
+      }
+    </style>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="index.html#features">Key Concepts</a></li>
+				<link rel="stylesheet" href="assets/css/main.css" /> 
+				<li><a href="index.html#activities">Activities</a></li>
+
+				<li><a href="quiz.html">Quiz</a></li>				
+				<li><a href="index.html#footer">Contact</a></li>
+			</ul>
+		</nav>
+
+
+  <title>Flip Card</title>
+</head>
+
+<body>
+  <div class="container-for-all-cards">
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Node</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">Represents an individual learner or entity in the network.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Edge</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">A connection or interaction between two nodes.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Directed vs. Undirected Edges</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">Directed means the connection has direction (A ➝ B)</p>
+          <p class="card-back-text">Undirected means mutual connection (A — B).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Degree</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">The number of edges a node has (i.e., how many connections).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Clique</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">A subset of nodes where every node is connected to every other node in the group.
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="container-for-all-cards">
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Ego Network</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">The immediate network around one node.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Dyad</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">A dyad is a pair of connected nodes</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Triad</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">A triad is three nodes and their connections</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Path</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">A sequence of edges connecting two or more nodes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Isolated Node</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">A node with no connections. Can signal a disengaged user or unused topic.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <div class="front">
+          <h1 class="card-front-header">Bridge</h1>
+        </div>
+        <div class="back">
+          <p class="card-back-text">A node or edge that connects different groups or clusters—removing it may split the
+            network.</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>
+cards.html
+4 KB
