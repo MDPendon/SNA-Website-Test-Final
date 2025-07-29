@@ -190,7 +190,45 @@
         const answer = form[`q${i}`].value;
         score += parseInt(answer);
       }
+      if (isNaN(score)) {
+        alert("Please answer all questions.");
+        return;
+      }
       document.getElementById('result').innerText = `You got ${score} out of ${total} correct!`;
+      // Grade all the answers and fill in each answer with a green or red for right/wrong answers
+      for (let i = 1; i <= total; i++) {
+        const answer = form[`q${i}`].value;
+        const question = document.querySelector(`.question:nth-child(${i})`);
+        if (answer === "1") {
+          question.querySelector('label:has(input[type="radio"]:checked)').style.backgroundColor = "lightgreen";
+        } else {
+          question.querySelector('label:has(input[type="radio"]:checked)').style.backgroundColor = "lightcoral";
+        }
+      }
+    });
+
+    // This makes radio buttons uncheckable by clicking again
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('click', function() {
+            // If the radio button was checked, then uncheck it 
+            if (this.dataset.wasChecked === 'true') {
+                this.checked = false;
+                this.dataset.wasChecked = 'false';
+              //If the radio button has never been checked or was unchecked, then check it
+            } else {
+                // If previously answered, reset the background color
+                document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                    r.parentElement.style.backgroundColor = "#f8f9fa";
+                });
+                this.parentElement.style.backgroundColor = "#3A1C4E";
+                // Uncheck all others in the same group first
+                document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                    r.dataset.wasChecked = 'false';
+                });
+                this.dataset.wasChecked = 'true';
+                
+            }
+        });
     });
   </script>
 </body>
